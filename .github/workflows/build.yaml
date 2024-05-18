@@ -36,9 +36,11 @@ jobs:
             }
           EOF
           )
-          curl https://api.github.com/repos/my-user/other-repo/pulls \
+          curl https://api.github.com/repos/${REPOSITORY_NAME}/pulls \
             --header "Authorization: token ${TOKEN}" \
             -H "Content-Type:application/json" \
             -d "$PAYLOAD"
         env:
+          BRANCH_NAME: ${{ github.head_ref }}
+          REPOSITORY: ${{ github.repository }}
           TOKEN: ${{ secrets.PR_GITHUB_TOKEN }}

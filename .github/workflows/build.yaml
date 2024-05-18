@@ -26,9 +26,19 @@ jobs:
           mvn --batch-mode deploy
 
       - name: Raise Release PR
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.PR_GITHUB_TOKEN }}
-          title: Release
-          branch: main
-          draft: true
+        run: |
+          PAYLOAD=$(cat <<EOF
+            {
+              "title": "Release",
+              "body": "Approve this PR to trigger a release build.",
+              "head": "${BRANCH_NAME}",
+              "base": "main"
+            }
+          EOF
+          )
+          curl https://api.github.com/repos/my-user/other-repo/pulls \
+            --header "Authorization: token ${ TOKEN }" \
+            -H "Content-Type:application/json" \
+            -d "$PAYLOAD"
+        env:
+          TOKEN: ${{ secrets.PR_GITHUB_TOKEN }}

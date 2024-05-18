@@ -31,7 +31,7 @@ jobs:
             {
               "title": "Release",
               "body": "Approve this PR to trigger a release build.",
-              "head": "${BRANCH_NAME}",
+              "head": "${BRANCH}",
               "base": "main"
             }
           EOF
@@ -43,6 +43,6 @@ jobs:
             https://api.github.com/repos/${REPOSITORY}/pulls \
             -d "$PAYLOAD"
         env:
-          BRANCH_NAME: ${{ github.head_ref }}
+          BRANCH: ${{ github.ref }}
           REPOSITORY: ${{ github.repository }}
           TOKEN: ${{ secrets.PR_GITHUB_TOKEN }}

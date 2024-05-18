@@ -36,9 +36,6 @@ jobs:
             }
           EOF
           )
-          curl https://api.github.com/repos/nickersan/hwee-parent/pulls \
-            --header "Authorization: token ${ TOKEN }" \
+          curl https://api.github.com/repos/nickersan/hwee-parent/pulls \            
             -H "Content-Type:application/json" \
             -d "$PAYLOAD"
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}

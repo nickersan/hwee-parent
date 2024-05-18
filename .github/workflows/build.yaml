@@ -36,11 +36,12 @@ jobs:
             }
           EOF
           )
+          URL_CREATE_PR=$(cat << EOF "https://api.github.com/repos/${REPOSITORY_NAME}/pulls" EOF)
           curl -L \
             -X POST \
             -H "Authorization: token ${TOKEN}" \
             -H "Content-Type:application/json" \
-            "https://api.github.com/repos/${REPOSITORY_NAME}/pulls" \
+            $URL_CREATE_PR \
             -d "$PAYLOAD"
         env:
           BRANCH_NAME: ${{ github.head_ref }}

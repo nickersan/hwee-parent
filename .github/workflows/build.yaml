@@ -30,4 +30,3 @@ jobs:
         with:
           title: Release
           base: main
-          branch: ${{ vars.GITHUB_REF_NAME }}

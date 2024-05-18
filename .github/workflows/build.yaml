@@ -26,7 +26,19 @@ jobs:
           mvn --batch-mode deploy
 
       - name: Raise Release PR
-        uses: peter-evans/create-pull-request@v6
-        with:
-          title: "Release"
-          branch: "main"
+        run: |
+          PAYLOAD=$(cat <<EOF
+            {
+              "title": "Release",
+              "body": "Automated PR to ...",
+              "head": "${BRANCH_NAME}",
+              "base": "main"
+            }
+          EOF
+          )
+          curl https://api.github.com/repos/nickersan/hwee-parent/pulls \
+            --header "Authorization: token ${ TOKEN }" \
+            -H "Content-Type:application/json" \
+            -d "$PAYLOAD"
+          env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -655,21 +655,19 @@
 
   </profiles>
 
-  <repositories>
+  <scm>
+    <connection>scm:git:https://github.com/nickersan/${project.artifactId}</connection>
+    <developerConnection>scm:git:https://github.com/nickersan/${project.artifactId}</developerConnection>
+    <url>https://github.com/nickersan/${project.artifactId}</url>
+    <tag>HEAD</tag>
+  </scm>
 
+  <distributionManagement>
     <repository>
       <id>github</id>
+      <name>GitHub nickersan Apache Maven Packages</name>
       <url>https://maven.pkg.github.com/nickersan/maven-repository</url>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </snapshots>
     </repository>
-
-  </repositories>
+  </distributionManagement>
 
 </project>

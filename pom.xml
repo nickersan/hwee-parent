@@ -591,6 +591,9 @@
     <profile>
       <id>contract-producer</id>
       <activation>
+        <property>
+          <name>contract-producer.base-test-class</name>
+        </property>
         <file>
           <exists>src/ct/resources/contracts</exists>
         </file>
@@ -652,21 +655,21 @@
 
   </profiles>
 
-<!--  <repositories>-->
+  <repositories>
 
-<!--    <repository>-->
-<!--      <id>github</id>-->
-<!--      <url>https://maven.pkg.github.com/nickersan/maven-repository</url>-->
-<!--      <releases>-->
-<!--        <enabled>true</enabled>-->
-<!--        <updatePolicy>always</updatePolicy>-->
-<!--      </releases>-->
-<!--      <snapshots>-->
-<!--        <enabled>true</enabled>-->
-<!--        <updatePolicy>never</updatePolicy>-->
-<!--      </snapshots>-->
-<!--    </repository>-->
+    <repository>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/nickersan/maven-repository</url>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </snapshots>
+    </repository>
 
-<!--  </repositories>-->
+  </repositories>
 
 </project>

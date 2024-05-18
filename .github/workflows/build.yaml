@@ -30,3 +30,4 @@ jobs:
         with:
           title: Release
           base: main
+          branch: ${{ GITHUB_REF_NAME }}

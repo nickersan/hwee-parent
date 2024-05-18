@@ -40,5 +40,5 @@ jobs:
             --header "Authorization: token ${ TOKEN }" \
             -H "Content-Type:application/json" \
             -d "$PAYLOAD"
-          env:
+        env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}

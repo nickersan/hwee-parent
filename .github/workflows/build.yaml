@@ -28,5 +28,6 @@ jobs:
       - name: Raise Release PR
         uses: peter-evans/create-pull-request@v6
         with:
+          token: ${{ secrets.PR_GITHUB_TOKEN }}
           title: Release
           branch: main

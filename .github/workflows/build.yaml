@@ -31,3 +31,4 @@ jobs:
           token: ${{ secrets.PR_GITHUB_TOKEN }}
           title: Release
           branch: main
+          draft: true

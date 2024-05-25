@@ -30,6 +30,7 @@ jobs:
         with:
           token: ${{ secrets.PR_GITHUB_TOKEN }}
 
+
 #        run: |
 #          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
 #          TITLE="Release ${VERSION%'-SNAPSHOT'}"

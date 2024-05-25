@@ -20,37 +20,11 @@ jobs:
           java-version: '21'
 
       - name: Deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
-        run: |
-          mvn --batch-mode deploy
+        uses: nickersan/actions/maven/deploy@main
+        with:
+          token: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
 
       - name: Raise Release PR
-        uses: nickersan/actions/create-release-pr@main
+        uses: nickersan/actions/maven/create-release-pr@main
         with:
           token: ${{ secrets.PR_GITHUB_TOKEN }}
-
-
-#        run: |
-#          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-#          TITLE="Release ${VERSION%'-SNAPSHOT'}"
-#          echo "Creating PR ${TITLE}"
-#          PAYLOAD=$(cat <<EOF
-#            {
-#              "title": "${TITLE}",
-#              "body": "Approve this PR to trigger a release build.",
-#              "head": "${BRANCH}",
-#              "base": "main"
-#            }
-#          EOF
-#          )
-#          curl -L \
-#            -X POST \
-#            -H "Authorization: token ${TOKEN}" \
-#            -H "Content-Type:application/json" \
-#            https://api.github.com/repos/${REPOSITORY}/pulls \
-#            -d "$PAYLOAD"
-#        env:
-#          BRANCH: ${{ github.ref }}
-#          REPOSITORY: ${{ github.repository }}
-#          TOKEN: ${{ secrets.PR_GITHUB_TOKEN }}

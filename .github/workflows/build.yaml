@@ -1,0 +1,30 @@
+name: build
+
+on:
+  push:
+    branches:
+      - "develop"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Deploy
+        uses: nickersan/actions/maven/deploy@main
+        with:
+          token: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+
+      - name: Raise Release PR
+        uses: nickersan/actions/maven/create-release-pr@main
+        with:
+          token: ${{ secrets.PR_GITHUB_TOKEN }}

@@ -27,10 +27,10 @@ jobs:
 
       - name: Raise Release PR
         run: |          
-          VERSION=${$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)%"-SNAPSHOT"}
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           PAYLOAD=$(cat <<EOF
             {
-              "title": "Release ${VERSION}",
+              "title": "Release ${VERSION%'-SNAPSHOT'}",
               "body": "Approve this PR to trigger a release build.",
               "head": "${BRANCH}",
               "base": "main"

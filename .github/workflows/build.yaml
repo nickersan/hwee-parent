@@ -26,7 +26,7 @@ jobs:
           mvn --batch-mode deploy
 
       - name: Raise Release PR
-        uses: nickersan/actions/create-release-pr.yml@main
+        uses: nickersan/actions/create-release-pr
         with:
           token: ${{ secrets.PR_GITHUB_TOKEN }}
 
